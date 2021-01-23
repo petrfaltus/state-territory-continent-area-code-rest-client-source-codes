@@ -1,2 +1,2 @@
-# state-territory-continent-area-code-rest-client-source-codes
-Console applications for JSON communication with my public available state, territory, continent and area code REST service. Complete example collection. Code for Java built by the Maven, for Java built by the Gradle, for C# built by the .NET Framework and for PHP.
+# State, territory, continent and area code REST client-source-codes
+Small example console source codes for finding states, territories, continents and area codes. It is the client that communicates using JSONs with my own state, territory, continent and area code REST service.
