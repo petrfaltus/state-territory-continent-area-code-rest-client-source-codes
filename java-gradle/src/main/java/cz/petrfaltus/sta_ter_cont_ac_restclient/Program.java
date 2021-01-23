@@ -3,10 +3,26 @@ package cz.petrfaltus.sta_ter_cont_ac_restclient;
 import static java.lang.System.out;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class Program {
 
     public static void main(String[] args) {
+        // all continents query
+        out.println("All continents:"); 
+
+        String requestJsonContinents = Json.codeQueryContinents();
+        String replyJsonContinents = Web.request(requestJsonContinents);
+        Map<String, Integer> continents = Json.decodeResultOwnersOrContinents(replyJsonContinents);
+
+        Set<Map.Entry<String, Integer>> continentsEntrySet = continents.entrySet();
+        for (Map.Entry<String, Integer> continent : continentsEntrySet) {
+            out.println(" - " + continent.getKey() + " (" + continent.getValue() + " countries}"); 
+        }
+
+        out.println();
+
         // one query
         out.println("One query:"); 
 

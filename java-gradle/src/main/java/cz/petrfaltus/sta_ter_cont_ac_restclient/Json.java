@@ -6,6 +6,7 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -27,6 +28,8 @@ public class Json {
     private static final String ERROR_STRING = "error_string";
     private static final String DATA = "data";
 
+    private static final long METHOD_OWNERS_NUMBER = 1;
+    private static final long METHOD_CONTINENTS_NUMBER = 2;
     private static final long METHOD_ONE_QUERY_NUMBER = 3;
 
     private static String objToString(JSONObject obj) {
@@ -42,6 +45,45 @@ public class Json {
         }
 
         return retString;
+    }
+
+    public static String codeQueryOwners() {
+        JSONObject obj = new JSONObject();
+        obj.put(METHOD_NUMBER, METHOD_OWNERS_NUMBER);
+
+        String retString = objToString(obj);
+
+        return retString;
+    }
+
+    public static String codeQueryContinents() {
+        JSONObject obj = new JSONObject();
+        obj.put(METHOD_NUMBER, METHOD_CONTINENTS_NUMBER);
+
+        String retString = objToString(obj);
+
+        return retString;
+    }
+
+    public static Map<String, Integer> decodeResultOwnersOrContinents(String resultJson) {
+        Map<String, Integer> retMap = null;
+
+        try {
+            JSONParser parser = new JSONParser();
+
+            JSONObject jsonObject = (JSONObject) parser.parse(resultJson);
+            long errorCode = (long) jsonObject.get(ERROR_CODE);
+
+            if (errorCode == 0) {
+                retMap = (Map<String, Integer>) jsonObject.get(DATA);
+            }
+        } catch (ParseException pe) {
+            retMap = null;
+        } catch (NullPointerException npe) {
+            retMap = null;
+        }
+
+        return retMap;
     }
 
     public static String codeOneQuery(OneItem query) {
