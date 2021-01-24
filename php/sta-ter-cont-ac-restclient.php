@@ -10,6 +10,32 @@ spl_autoload_register(function($class_name)
   require_once $class_source_file_path;
 });
 
+// all continents query
+echo "All continents:"; 
+
+$requestJsonContinents = tJson::codeQueryContinents();
+
+$replyJsonContinents = tWeb::request($requestJsonContinents);
+if ($replyJsonContinents === null)
+{
+  echo " - error sending POST web query".PHP_EOL;
+  return;
+}
+
+$continents = tJson::decodeResultOwnersOrContinents($replyJsonContinents);
+if ($continents === null)
+{
+  echo " - error decoding of reply JSON".PHP_EOL;
+  return;
+}
+
+foreach ($continents as $continent => $count)
+{
+  echo " - ".$continent." (".$count." countries}".PHP_EOL; 
+}
+
+echo PHP_EOL;
+
 // one query
 echo "One query:".PHP_EOL;
 

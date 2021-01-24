@@ -14,7 +14,42 @@ class tJson
   const ERROR_STRING = "error_string";
   const DATA = "data";
 
+  const METHOD_OWNERS_NUMBER = 1;
+  const METHOD_CONTINENTS_NUMBER = 2;
   const METHOD_ONE_QUERY_NUMBER = 3;
+
+  //----------------------------------------------------------------------------
+  public static function codeQueryOwners()
+  {
+    $output[self::METHOD_NUMBER] = self::METHOD_OWNERS_NUMBER;
+
+    $outputJson = json_encode($output);
+
+    return $outputJson;
+  }
+  //----------------------------------------------------------------------------
+  public static function codeQueryContinents()
+  {
+    $output[self::METHOD_NUMBER] = self::METHOD_CONTINENTS_NUMBER;
+
+    $outputJson = json_encode($output);
+
+    return $outputJson;
+  }
+  //----------------------------------------------------------------------------
+  public static function decodeResultOwnersOrContinents(&$inputJson)
+  {
+    $input = json_decode($inputJson, true);
+
+    if ((isset($input[self::ERROR_CODE])) and ($input[self::ERROR_CODE] === 0))
+      if ((isset($input[self::DATA])) and (is_array($input[self::DATA])))
+      {
+        return $input[self::DATA];
+      }
+
+    return null;
+  }
+  //----------------------------------------------------------------------------
 
   //----------------------------------------------------------------------------
   public static function codeQueryOneQuery(&$country, &$iso_code_2_char, &$iso_code_3_char, &$owner, &$continent, &$phone_prefix)
