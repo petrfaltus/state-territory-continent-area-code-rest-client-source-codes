@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Text;
 
@@ -16,6 +17,39 @@ namespace StaTerContAcRestClient
         {
             WebClient client = new WebClient();
             client.Encoding = encoding;
+
+            // all continents query
+            Console.WriteLine("All continents:"); 
+
+            RestRequest2 restRequest2 = new RestRequest2();
+
+            string restRequestJsonContinents = JsonConvert.SerializeObject(restRequest2);
+
+            string restReplyJsonContinents;
+            try
+            {
+                restReplyJsonContinents = client.UploadString(URL_ADDRESS, restRequestJsonContinents);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine(WEB_REQUEST_FAILED);
+                return;
+            }
+
+            RestReply1or2 restReply2 = JsonConvert.DeserializeObject<RestReply1or2>(restReplyJsonContinents);
+
+            if (restReply2.error_code != 0)
+            {
+                Console.WriteLine(restReply2.error_string);
+                return;
+            }
+
+            foreach(KeyValuePair<string, int> continent in restReply2.data)
+            {
+                Console.WriteLine(" - " + continent.Key + " (" + continent.Value + " countries}"); 
+            }
+
+            Console.WriteLine();
 
             // one query
             Console.WriteLine("One query:"); 
