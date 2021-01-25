@@ -12,11 +12,13 @@ namespace StaTerContAcRestClient
         private static readonly string URL_ADDRESS = "http://api.petrfaltus.net/country_code_prefix/json/1.0";
         private static readonly string WEB_REQUEST_FAILED = "The web request to the REST service failed";
         private static readonly Encoding encoding = Encoding.UTF8;
+        private static readonly string USER_AGENT = "Petr Faltus C# State, territory, continent and area code REST client";
 
         public static void Main(string[] args)
         {
             WebClient client = new WebClient();
             client.Encoding = encoding;
+            client.Headers.Add("user-agent", USER_AGENT);
 
             // all continents query
             Console.WriteLine("All continents:"); 
