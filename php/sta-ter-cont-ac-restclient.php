@@ -25,7 +25,17 @@ if ($replyJsonContinents === null)
 $continents = tJson::decodeResultOwnersOrContinents($replyJsonContinents);
 if ($continents === null)
 {
-  echo " - error decoding of reply JSON".PHP_EOL;
+  $errorString = tJson::getLastErrorString();
+
+  if ($errorString != null)
+  {
+    echo " - replied error '".$errorString."'".PHP_EOL;
+  }
+  else
+  {
+    echo " - error decoding of reply JSON".PHP_EOL;
+  }
+
   return;
 }
 
@@ -58,7 +68,17 @@ if ($replyJson === null)
 $replyItems = tJson::decodeResultOneQuery($replyJson);
 if ($replyItems === null)
 {
-  echo " - error decoding of reply JSON".PHP_EOL;
+  $errorString = tJson::getLastErrorString();
+
+  if ($errorString != null)
+  {
+    echo " - replied error '".$errorString."'".PHP_EOL;
+  }
+  else
+  {
+    echo " - error decoding of reply JSON".PHP_EOL;
+  }
+
   return;
 }
 
