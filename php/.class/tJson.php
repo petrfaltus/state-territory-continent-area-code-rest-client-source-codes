@@ -99,13 +99,13 @@ class tJson
       // invalid JSON
       $retData = null;
     }
-    else if ($input[self::ERROR_CODE] !== 0)
+    elseif ($input[self::ERROR_CODE] !== 0)
     {
       // error reported by the service
       $retData = null;
       self::$lastErrorString = $input[self::ERROR_STRING];
     }
-    else if ((!isset($input[self::DATA])) or (!is_array($input[self::DATA])))
+    elseif ((!isset($input[self::DATA])) or (!is_array($input[self::DATA])))
     {
       // corrupted JSON
       $retData = null;
