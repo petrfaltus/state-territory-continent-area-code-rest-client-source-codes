@@ -34,7 +34,7 @@ namespace StaTerContAcRestClient
             }
             catch (Exception)
             {
-                Console.WriteLine(WEB_REQUEST_FAILED);
+                Console.WriteLine(" - " + WEB_REQUEST_FAILED);
                 return;
             }
 
@@ -42,7 +42,7 @@ namespace StaTerContAcRestClient
 
             if (restReply2.error_code != 0)
             {
-                Console.WriteLine(restReply2.error_string);
+                Console.WriteLine(" - " + restReply2.error_string);
                 return;
             }
 
@@ -73,7 +73,7 @@ namespace StaTerContAcRestClient
             }
             catch (Exception)
             {
-                Console.WriteLine(WEB_REQUEST_FAILED);
+                Console.WriteLine(" - " + WEB_REQUEST_FAILED);
                 return;
             }
 
@@ -81,7 +81,7 @@ namespace StaTerContAcRestClient
 
             if (restReply3.error_code != 0)
             {
-                Console.WriteLine(restReply3.error_string);
+                Console.WriteLine(" - " + restReply3.error_string);
                 return;
             }
 
