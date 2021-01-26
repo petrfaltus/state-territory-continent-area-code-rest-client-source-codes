@@ -24,7 +24,14 @@ public class Program {
         }
         Map<String, Integer> continents = Json.decodeResultOwnersOrContinents(replyJsonContinents);
         if (continents == null) {
-            out.println(" - error decoding of reply JSON"); 
+            String errorString = Json.getLastErrorString();
+
+            if (errorString != null) {
+                out.println(" - replied error '" + errorString + "'"); 
+            } else {
+                out.println(" - error decoding of reply JSON"); 
+            }
+
             return;
         }
 
@@ -58,7 +65,14 @@ public class Program {
         }
         List<OneItem> replyItems = Json.decodeResultOneQuery(replyJsonQuery);
         if (replyItems == null) {
-            out.println(" - error decoding of reply JSON"); 
+            String errorString = Json.getLastErrorString();
+
+            if (errorString != null) {
+                out.println(" - replied error '" + errorString + "'"); 
+            } else {
+                out.println(" - error decoding of reply JSON"); 
+            }
+
             return;
         }
 
