@@ -11,7 +11,7 @@ spl_autoload_register(function($class_name)
 });
 
 // all continents query
-echo "All continents:"; 
+echo "All continents:".PHP_EOL;
 
 $requestJsonContinents = tJson::codeQueryContinents();
 
