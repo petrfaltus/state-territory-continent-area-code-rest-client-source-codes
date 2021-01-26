@@ -18,6 +18,8 @@ class tJson
   const METHOD_CONTINENTS_NUMBER = 2;
   const METHOD_ONE_QUERY_NUMBER = 3;
 
+  protected static $lastErrorString;
+
   //----------------------------------------------------------------------------
   public static function codeQueryOwners()
   {
@@ -39,15 +41,33 @@ class tJson
   //----------------------------------------------------------------------------
   public static function decodeResultOwnersOrContinents(&$inputJson)
   {
+    $retData = null;
+    self::$lastErrorString = null;
+
     $input = json_decode($inputJson, true);
 
-    if ((isset($input[self::ERROR_CODE])) and ($input[self::ERROR_CODE] === 0))
-      if ((isset($input[self::DATA])) and (is_array($input[self::DATA])))
-      {
-        return $input[self::DATA];
-      }
+    if ((!isset($input[self::ERROR_CODE])) or (!isset($input[self::ERROR_STRING])))
+    {
+      // invalid JSON
+      $retData = null;
+    }
+    elseif ($input[self::ERROR_CODE] !== 0)
+    {
+      // error reported by the service
+      $retData = null;
+      self::$lastErrorString = $input[self::ERROR_STRING];
+    }
+    elseif ((!isset($input[self::DATA])) or (!is_array($input[self::DATA])))
+    {
+      // corrupted JSON
+      $retData = null;
+    }
+    else
+    {
+      $retData = $input[self::DATA];
+    }
 
-    return null;
+    return $retData;
   }
   //----------------------------------------------------------------------------
 
@@ -70,6 +90,7 @@ class tJson
   public static function decodeResultOneQuery(&$inputJson)
   {
     $retData = null;
+    self::$lastErrorString = null;
 
     $input = json_decode($inputJson, true);
 
@@ -82,6 +103,7 @@ class tJson
     {
       // error reported by the service
       $retData = null;
+      self::$lastErrorString = $input[self::ERROR_STRING];
     }
     else if ((!isset($input[self::DATA])) or (!is_array($input[self::DATA])))
     {
@@ -94,6 +116,13 @@ class tJson
     }
 
     return $retData;
+  }
+  //----------------------------------------------------------------------------
+
+  //----------------------------------------------------------------------------
+  public static function getLastErrorString()
+  {
+    return self::$lastErrorString;
   }
   //----------------------------------------------------------------------------
 }
