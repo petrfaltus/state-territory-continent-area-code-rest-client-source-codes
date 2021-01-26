@@ -31,7 +31,7 @@ if ($continents === null)
 
 foreach ($continents as $continent => $count)
 {
-  echo " - ".$continent." (".$count." countries}".PHP_EOL; 
+  echo " - ".$continent." (".$count." countries}".PHP_EOL;
 }
 
 echo PHP_EOL;

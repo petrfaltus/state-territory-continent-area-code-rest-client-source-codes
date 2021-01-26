@@ -21,7 +21,7 @@ namespace StaTerContAcRestClient
             client.Headers.Add("user-agent", USER_AGENT);
 
             // all continents query
-            Console.WriteLine("All continents:"); 
+            Console.WriteLine("All continents:");
 
             RestRequest2 restRequest2 = new RestRequest2();
 
@@ -48,13 +48,13 @@ namespace StaTerContAcRestClient
 
             foreach(KeyValuePair<string, int> continent in restReply2.data)
             {
-                Console.WriteLine(" - " + continent.Key + " (" + continent.Value + " countries}"); 
+                Console.WriteLine(" - " + continent.Key + " (" + continent.Value + " countries}");
             }
 
             Console.WriteLine();
 
             // one query
-            Console.WriteLine("One query:"); 
+            Console.WriteLine("One query:");
 
             RestRequest3 restRequest3 = new RestRequest3();
             restRequest3.country = "";
