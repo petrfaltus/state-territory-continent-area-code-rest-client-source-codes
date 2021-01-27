@@ -3,7 +3,7 @@
 class tWeb
 {
   const URL_ADDRESS = "http://api.petrfaltus.net/country_code_prefix/json/1.0";
-  const USER_AGENT = "Petr Faltus PHP state, territory, continent and area code REST client";
+  const USER_AGENT = "Petr Faltus PHP State, territory, continent and area code REST client";
 
   //----------------------------------------------------------------------------
   public static function request($query)

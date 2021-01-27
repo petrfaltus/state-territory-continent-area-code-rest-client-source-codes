@@ -10,33 +10,40 @@ public class Program {
 
     public static void main(String[] args) {
         // all continents query
-        out.println("All continents:"); 
+        out.println("All continents:");
 
         String requestJsonContinents = Json.codeQueryContinents();
         if (requestJsonContinents == null) {
-            out.println(" - error coding of request JSON"); 
+            out.println(" - error coding of request JSON");
             return;
         }
         String replyJsonContinents = Web.request(requestJsonContinents);
         if (replyJsonContinents == null) {
-            out.println(" - error sending POST web query"); 
+            out.println(" - error sending POST web query");
             return;
         }
         Map<String, Integer> continents = Json.decodeResultOwnersOrContinents(replyJsonContinents);
         if (continents == null) {
-            out.println(" - error decoding of reply JSON"); 
+            String errorString = Json.getLastErrorString();
+
+            if (errorString != null) {
+                out.println(" - replied error '" + errorString + "'");
+            } else {
+                out.println(" - error decoding of reply JSON");
+            }
+
             return;
         }
 
         Set<Map.Entry<String, Integer>> continentsEntrySet = continents.entrySet();
         for (Map.Entry<String, Integer> continent : continentsEntrySet) {
-            out.println(" - " + continent.getKey() + " (" + continent.getValue() + " countries}"); 
+            out.println(" - " + continent.getKey() + " (" + continent.getValue() + " countries}");
         }
 
         out.println();
 
         // one query
-        out.println("One query:"); 
+        out.println("One query:");
 
         OneItem requestItem = new OneItem();
         requestItem.country = "";
@@ -48,17 +55,24 @@ public class Program {
 
         String requestJsonQuery = Json.codeOneQuery(requestItem);
         if (requestJsonQuery == null) {
-            out.println(" - error coding of request JSON"); 
+            out.println(" - error coding of request JSON");
             return;
         }
         String replyJsonQuery = Web.request(requestJsonQuery);
         if (replyJsonQuery == null) {
-            out.println(" - error sending POST web query"); 
+            out.println(" - error sending POST web query");
             return;
         }
         List<OneItem> replyItems = Json.decodeResultOneQuery(replyJsonQuery);
         if (replyItems == null) {
-            out.println(" - error decoding of reply JSON"); 
+            String errorString = Json.getLastErrorString();
+
+            if (errorString != null) {
+                out.println(" - replied error '" + errorString + "'");
+            } else {
+                out.println(" - error decoding of reply JSON");
+            }
+
             return;
         }
 

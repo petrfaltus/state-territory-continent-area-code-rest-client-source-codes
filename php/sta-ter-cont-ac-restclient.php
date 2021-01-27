@@ -11,7 +11,7 @@ spl_autoload_register(function($class_name)
 });
 
 // all continents query
-echo "All continents:"; 
+echo "All continents:".PHP_EOL;
 
 $requestJsonContinents = tJson::codeQueryContinents();
 
@@ -25,13 +25,23 @@ if ($replyJsonContinents === null)
 $continents = tJson::decodeResultOwnersOrContinents($replyJsonContinents);
 if ($continents === null)
 {
-  echo " - error decoding of reply JSON".PHP_EOL;
+  $errorString = tJson::getLastErrorString();
+
+  if ($errorString != null)
+  {
+    echo " - replied error '".$errorString."'".PHP_EOL;
+  }
+  else
+  {
+    echo " - error decoding of reply JSON".PHP_EOL;
+  }
+
   return;
 }
 
 foreach ($continents as $continent => $count)
 {
-  echo " - ".$continent." (".$count." countries}".PHP_EOL; 
+  echo " - ".$continent." (".$count." countries}".PHP_EOL;
 }
 
 echo PHP_EOL;
@@ -58,7 +68,17 @@ if ($replyJson === null)
 $replyItems = tJson::decodeResultOneQuery($replyJson);
 if ($replyItems === null)
 {
-  echo " - error decoding of reply JSON".PHP_EOL;
+  $errorString = tJson::getLastErrorString();
+
+  if ($errorString != null)
+  {
+    echo " - replied error '".$errorString."'".PHP_EOL;
+  }
+  else
+  {
+    echo " - error decoding of reply JSON".PHP_EOL;
+  }
+
   return;
 }
 

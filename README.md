@@ -67,9 +67,9 @@ Now in January 2021 I have the computer with **Windows 10 Pro 64bit**, **12GB RA
 ## To do (my plans to the future)
 
 
-[GIT]: <https://git-scm.com>
+[GIT]: <https://git-scm.com/>
 [Java JDK]: <https://www.oracle.com/java/technologies/javase-downloads.html>
 [Apache Maven]: <https://maven.apache.org/>
 [Gradle Build Tool]: <https://gradle.org/>
-[Newtonsoft.Json.dll]: <https://www.newtonsoft.com>
+[Newtonsoft.Json.dll]: <https://www.newtonsoft.com/>
 [PHP]: <https://www.php.net/>

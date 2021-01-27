@@ -32,6 +32,8 @@ public class Json {
     private static final long METHOD_CONTINENTS_NUMBER = 2;
     private static final long METHOD_ONE_QUERY_NUMBER = 3;
 
+    private static String lastErrorString;
+
     private static String objToString(JSONObject obj) {
         String retString = Const.EMPTY_STRING;
 
@@ -67,6 +69,7 @@ public class Json {
 
     public static Map<String, Integer> decodeResultOwnersOrContinents(String resultJson) {
         Map<String, Integer> retMap = null;
+        lastErrorString = null;
 
         try {
             JSONParser parser = new JSONParser();
@@ -76,6 +79,8 @@ public class Json {
 
             if (errorCode == 0) {
                 retMap = (Map<String, Integer>) jsonObject.get(DATA);
+            } else {
+                lastErrorString = (String) jsonObject.get(ERROR_STRING);
             }
         } catch (ParseException pe) {
             retMap = null;
@@ -103,6 +108,7 @@ public class Json {
 
     public static List<OneItem> decodeResultOneQuery(String resultJson) {
         List<OneItem> retList = null;
+        lastErrorString = null;
 
         try {
             JSONParser parser = new JSONParser();
@@ -129,6 +135,8 @@ public class Json {
 
                     retList.add(oneItem);
                 }
+            } else {
+                lastErrorString = (String) jsonObject.get(ERROR_STRING);
             }
         } catch (ParseException pe) {
             retList = null;
@@ -137,6 +145,10 @@ public class Json {
         }
 
         return retList;
+    }
+
+    public static String getLastErrorString() {
+        return lastErrorString;
     }
 
 }
