@@ -10,5 +10,10 @@ namespace StaTerContAcRestClient
         public int case_sensitive { get; set; }
 
         public OneItem[] data { get; set; }
+
+        public RestReply3()
+        {
+            error_code = -999;
+        }
     }
 }
