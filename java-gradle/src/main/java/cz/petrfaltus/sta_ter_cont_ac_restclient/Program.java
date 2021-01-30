@@ -7,6 +7,10 @@ import java.util.Map;
 import java.util.Set;
 
 public class Program {
+    public static final String MESSAGE_ERROR_CODING_JSON = "error coding the request JSON";
+    public static final String MESSAGE_ERROR_CONTACTING_SERVICE = "error contacting the REST service";
+    public static final String MESSAGE_ERROR_DECODING_JSON = "error decoding the reply JSON";
+    public static final String MESSAGE_RECEIVED_ERROR = "received error";
 
     public static void main(String[] args) {
         // all continents query
@@ -14,12 +18,12 @@ public class Program {
 
         String requestJsonContinents = Json.codeQueryContinents();
         if (requestJsonContinents == null) {
-            out.println(" - error coding of request JSON");
+            out.println(" - " + MESSAGE_ERROR_CODING_JSON);
             return;
         }
         String replyJsonContinents = Web.request(requestJsonContinents);
         if (replyJsonContinents == null) {
-            out.println(" - error sending POST web query");
+            out.println(" - " + MESSAGE_ERROR_CONTACTING_SERVICE);
             return;
         }
         Map<String, Integer> continents = Json.decodeResultOwnersOrContinents(replyJsonContinents);
@@ -27,9 +31,9 @@ public class Program {
             String errorString = Json.getLastErrorString();
 
             if (errorString != null) {
-                out.println(" - replied error '" + errorString + "'");
+                out.println(" - " + MESSAGE_RECEIVED_ERROR + ": " + errorString);
             } else {
-                out.println(" - error decoding of reply JSON");
+                out.println(" - " + MESSAGE_ERROR_DECODING_JSON);
             }
 
             return;
@@ -55,12 +59,12 @@ public class Program {
 
         String requestJsonQuery = Json.codeOneQuery(requestItem);
         if (requestJsonQuery == null) {
-            out.println(" - error coding of request JSON");
+            out.println(" - " + MESSAGE_ERROR_CODING_JSON);
             return;
         }
         String replyJsonQuery = Web.request(requestJsonQuery);
         if (replyJsonQuery == null) {
-            out.println(" - error sending POST web query");
+            out.println(" - " + MESSAGE_ERROR_CONTACTING_SERVICE);
             return;
         }
         List<OneItem> replyItems = Json.decodeResultOneQuery(replyJsonQuery);
@@ -68,9 +72,9 @@ public class Program {
             String errorString = Json.getLastErrorString();
 
             if (errorString != null) {
-                out.println(" - replied error '" + errorString + "'");
+                out.println(" - " + MESSAGE_RECEIVED_ERROR + ": " + errorString);
             } else {
-                out.println(" - error decoding of reply JSON");
+                out.println(" - " + MESSAGE_ERROR_DECODING_JSON);
             }
 
             return;
