@@ -8,5 +8,10 @@ namespace StaTerContAcRestClient
         public string error_string { get; set; }
 
         public Dictionary<string, int> data { get; set; }
+
+        public RestReply1or2()
+        {
+            error_code = -999;
+        }
     }
 }

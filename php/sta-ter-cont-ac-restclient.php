@@ -10,6 +10,10 @@ spl_autoload_register(function($class_name)
   require_once $class_source_file_path;
 });
 
+const MESSAGE_ERROR_CONTACTING_SERVICE = "error contacting the REST service";
+const MESSAGE_ERROR_DECODING_JSON = "error decoding the reply JSON";
+const MESSAGE_RECEIVED_ERROR = "received error";
+
 // all continents query
 echo "All continents:".PHP_EOL;
 
@@ -18,7 +22,7 @@ $requestJsonContinents = tJson::codeQueryContinents();
 $replyJsonContinents = tWeb::request($requestJsonContinents);
 if ($replyJsonContinents === null)
 {
-  echo " - error sending POST web query".PHP_EOL;
+  echo " - ".MESSAGE_ERROR_CONTACTING_SERVICE.PHP_EOL;
   return;
 }
 
@@ -29,11 +33,11 @@ if ($continents === null)
 
   if ($errorString != null)
   {
-    echo " - replied error '".$errorString."'".PHP_EOL;
+    echo " - ".MESSAGE_RECEIVED_ERROR.": ".$errorString.PHP_EOL;
   }
   else
   {
-    echo " - error decoding of reply JSON".PHP_EOL;
+    echo " - ".MESSAGE_ERROR_DECODING_JSON.PHP_EOL;
   }
 
   return;
@@ -61,7 +65,7 @@ $requestJson = tJson::codeQueryOneQuery($country, $iso_code_2_char, $iso_code_3_
 $replyJson = tWeb::request($requestJson);
 if ($replyJson === null)
 {
-  echo " - error sending POST web query".PHP_EOL;
+  echo " - ".MESSAGE_ERROR_CONTACTING_SERVICE.PHP_EOL;
   return;
 }
 
@@ -72,11 +76,11 @@ if ($replyItems === null)
 
   if ($errorString != null)
   {
-    echo " - replied error '".$errorString."'".PHP_EOL;
+    echo " - ".MESSAGE_RECEIVED_ERROR.": ".$errorString.PHP_EOL;
   }
   else
   {
-    echo " - error decoding of reply JSON".PHP_EOL;
+    echo " - ".MESSAGE_ERROR_DECODING_JSON.PHP_EOL;
   }
 
   return;
