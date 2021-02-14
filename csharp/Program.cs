@@ -77,8 +77,14 @@ namespace StaTerContAcRestClient
                 return;
             }
 
+            int totalItems = 0;
             foreach (OneItem replyItem in restReply3.data)
             {
+                if (totalItems > 0)
+                {
+                    Console.WriteLine();
+                }
+
                 Console.WriteLine(" - country: " + replyItem.country);
                 Console.WriteLine(" - ISO code 2 characters: " + replyItem.iso_code_2_char);
                 Console.WriteLine(" - ISO code 3 characters: " + replyItem.iso_code_3_char);
@@ -86,7 +92,7 @@ namespace StaTerContAcRestClient
                 Console.WriteLine(" - continent: " + replyItem.continent);
                 Console.WriteLine(" - phone prefix: " + replyItem.phone_prefix);
 
-                Console.WriteLine();
+                totalItems++;
             }
         }
     }

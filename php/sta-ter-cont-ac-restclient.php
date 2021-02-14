@@ -86,8 +86,14 @@ if ($replyItems === null)
   return;
 }
 
+$totalItems = 0;
 foreach ($replyItems as $replyItem)
 {
+  if ($totalItems > 0)
+  {
+    echo PHP_EOL;
+  }
+
   echo " - country: ".$replyItem[tJson::COUNTRY].PHP_EOL;
   echo " - ISO code 2 characters: ".$replyItem[tJson::ISO_CODE_2_CHAR].PHP_EOL;
   echo " - ISO code 3 characters: ".$replyItem[tJson::ISO_CODE_3_CHAR].PHP_EOL;
@@ -95,7 +101,7 @@ foreach ($replyItems as $replyItem)
   echo " - continent: ".$replyItem[tJson::CONTINENT].PHP_EOL;
   echo " - phone prefix: ".$replyItem[tJson::PHONE_PREFIX].PHP_EOL;
 
-  echo PHP_EOL;
+  $totalItems++;
 }
 
 ?>
