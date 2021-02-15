@@ -26,7 +26,7 @@ if ($replyJsonContinents === null)
   return;
 }
 
-$continents = tJson::decodeResultOwnersOrContinents($replyJsonContinents);
+$continents = tJson::decodeResult($replyJsonContinents);
 if ($continents === null)
 {
   $errorString = tJson::getLastErrorString();
@@ -69,7 +69,7 @@ if ($replyJson === null)
   return;
 }
 
-$replyItems = tJson::decodeResultOneQuery($replyJson);
+$replyItems = tJson::decodeResult($replyJson);
 if ($replyItems === null)
 {
   $errorString = tJson::getLastErrorString();
