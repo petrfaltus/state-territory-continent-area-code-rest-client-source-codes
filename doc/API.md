@@ -2,36 +2,36 @@
 Application interface description
 (c) Petr Faltus 2021
 
-**Get all owners**
+**All owners request**
 ----
-Returns json data about all owners with counts in the API.
+Returns all owners with counts present in the API.
 
 * **URL**
   http://api.petrfaltus.net/country_code_prefix/json/1.0
 
-* **Method:**
+* **Method**
   `POST`
 
 * **URL Params**
   None
 
-* **Data Params**
-  * **Required:**
+* **Raw Data Params**
+  * **Required**
     `method_number : 1`
 
-  * **Optional:**
+  * **Optional**
     None
 
-  * **Example JSON Request Data:**
+  * **Example JSON Request**
     ```javascript
     {
       "method_number" : 1
     }
     ```
 
-* **Success Response:**
-  * **Code:** 200 OK
-    **Content:**
+* **Success Response**
+  * **Code** 200 OK
+    **Content**
     ```javascript
     {
       "error_code" : 0,
@@ -43,9 +43,9 @@ Returns json data about all owners with counts in the API.
     }
     ```
 
-* **Error Response:**
-  * **Code:** 200 OK
-    **Content:**
+* **Error Response**
+  * **Code** 200 OK
+    **Content**
     ```javascript
     {
       "error_code" : integer,
@@ -54,36 +54,36 @@ Returns json data about all owners with counts in the API.
     ```
     *(`error_code` != 0)*
 
-**Get all continents**
+**All continents request**
 ----
-Returns json data about all continents with counts in the API.
+Returns all continents with counts present in the API.
 
 * **URL**
   http://api.petrfaltus.net/country_code_prefix/json/1.0
 
-* **Method:**
+* **Method**
   `POST`
 
 * **URL Params**
   None
 
-* **Data Params**
-  * **Required:**
+* **Raw Data Params**
+  * **Required**
     `method_number : 2`
 
-  * **Optional:**
+  * **Optional**
     None
 
-  * **Example JSON Request Data:**
+  * **Example JSON Request**
     ```javascript
     {
       "method_number" : 2
     }
     ```
 
-* **Success Response:**
-  * **Code:** 200 OK
-    **Content:**
+* **Success Response**
+  * **Code** 200 OK
+    **Content**
     ```javascript
     {
       "error_code" : 0,
@@ -95,9 +95,9 @@ Returns json data about all continents with counts in the API.
     }
     ```
 
-* **Error Response:**
-  * **Code:** 200 OK
-    **Content:**
+* **Error Response**
+  * **Code** 200 OK
+    **Content**
     ```javascript
     {
       "error_code" : integer,
@@ -108,19 +108,19 @@ Returns json data about all continents with counts in the API.
 
 **One query request**
 ----
-Returns json data for one request to the API.
+Returns one country/ISO code/owner/continent/phone prefix request from the API.
 
 * **URL**
   http://api.petrfaltus.net/country_code_prefix/json/1.0
 
-* **Method:**
+* **Method**
   `POST`
 
 * **URL Params**
   None
 
-* **Data Params**
-  * **Required:**
+* **Raw Data Params**
+  * **Required**
     `method_number : 3`
 
   * **Required at least one of:**
@@ -131,11 +131,11 @@ Returns json data for one request to the API.
     `continent : [continent string]`
     `phone_prefix : [phone prefix or phone number string]`
 
-  * **Optional:**
+  * **Optional**
     `czech_sensitive : [0|1]`
     `case_sensitive : [0|1]`
 
-* **Example JSON Request Data:**
+* **Example JSON Request**
   ```javascript
   {
     "method_number" : 3,
@@ -160,9 +160,9 @@ Returns json data for one request to the API.
   }
   ```
 
-* **Success Response:**
-  * **Code:** 200 OK
-    **Content:**
+* **Success Response**
+  * **Code** 200 OK
+    **Content**
     ```javascript
     {
       "error_code" : 0,
@@ -191,9 +191,9 @@ Returns json data for one request to the API.
     ```
     *(with `czech_sensitive` and `case_sensitive` the values used for this request)*
 
-* **Error Response:**
-  * **Code:** 200 OK
-    **Content:**
+* **Error Response**
+  * **Code** 200 OK
+    **Content**
     ```javascript
     {
       "error_code" : integer,
