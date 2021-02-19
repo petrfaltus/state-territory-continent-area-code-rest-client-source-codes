@@ -80,7 +80,13 @@ public class Program {
             return;
         }
 
+        int totalItems = 0;
         for (OneItem replyItem: replyItems) {
+            if (totalItems > 0)
+            {
+                out.println();
+            }
+
             out.println(" - country: " + replyItem.country);
             out.println(" - ISO code 2 characters: " + replyItem.iso_code_2_char);
             out.println(" - ISO code 3 characters: " + replyItem.iso_code_3_char);
@@ -88,7 +94,7 @@ public class Program {
             out.println(" - continent: " + replyItem.continent);
             out.println(" - phone prefix: " + replyItem.phone_prefix);
 
-            out.println();
+            totalItems++;
         }
     }
 
